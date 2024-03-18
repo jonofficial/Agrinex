@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+    <link rel="stylesheet" href="claim.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- <img src="./lawrence-kayku-frWOcVisp8U-unsplash.jpg" alt="background"> -->
+        <div class="nav-bar">
+            <div class="left-bar">
+                <a id="big-text">AgriNex</a>
+                <!-- <img src="./icons8-farmer-90 2 (1).png" alt=""> -->
+            </div>
+            <div class="right-bar">
+                <a href="../Home_Page/home.html" target="_self">Plans</a>
+                <a href="../About_Page/home.html">About</a>
+                <a href="../Contact/contact.html" target="_self">Contact</a>
+            </div>
+        </div>
+    </div>
+    <div class="lol">
+    <div class="login-page">
+        <form id="dataForm">
+            <h1 style="margin-top: 20px;">New Insurance policy</h1>
+            <p id="user" style="font-weight: 600;">City</p>
+            <div class="input-box">
+                <input type="city" id="city" placeholder="  Enter City" required>
+            </div>
+            <p id="pass" style="font-weight: 600;">Wallet ID</p>
+            <div class="input-box">
+                <input type="walletid" id="walletId" placeholder="  Enter wallet address" required>
+            </div>
+            <button type="button" onclick="saveData()" style="margin-left:130px; margin-top:10px" >Submit</button>
+        </form>
+    </div>
+    </div>
+    <div class="text2" style="text-align: center; font-weight:800; font-size:30px;">
+        <a href="./weather_web.pdf" target="_blank">Click here to view more about Insurance policy</a>
+    </div>
+    <!-- <div class="main">
+        <div class="form_container">
+            <form id="dataForm">
+                <label for="city">City:</label><br>
+                <input type="text" id="city" name="city" required><br>
+                <label for="walletId">Wallet ID:</label><br>
+                <input type="text" id="walletId" name="walletId" required><br>
+                <button type="button" onclick="saveData()">Submit</button>
+            </form>
+        </div>
+    </div> -->
+
+    <!-- <button onclick="openDynamicPDF()">Open PDF</button>
+<script>
+    function openDynamicPDF() {
+        // Create an object element
+        var pdfObject = document.createElement('object');
+
+        // Set attributes for the object element (replace 'your_pdf.pdf' with the actual path to your PDF file)
+        pdfObject.setAttribute('data', 'weather_web.pdf');
+        pdfObject.setAttribute('type', 'application/pdf');
+        pdfObject.setAttribute('width', '100%');
+        pdfObject.setAttribute('height', '600px');
+
+        // Append the object to the body or any other container element
+        document.body.appendChild(pdfObject);
+    }
+</script> -->
+    <!-- <embed id="pdfViewer" src="weather_web.pdf" type="application/pdf" width="100%" height="600px" style="margin-top: 50px;"> -->
+    <script src="gun.js"></script> 
+</body>
+</html>

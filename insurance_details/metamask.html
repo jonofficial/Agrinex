@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Connect with MetaMask</title>
+        <script src="https://cdn.ethers.io/lib/ethers-5.6.4.umd.min.js" type="application/javascript"></script>
+        <link rel="stylesheet" href="./metamask.css">
+        <script>
+            function web3_check_metamask() {
+                if (!window.ethereum) {
+                    console.error('It seems that the MetaMask extension is not detected. Please install MetaMask first.');
+                    alert('It seems that the MetaMask extension is not detected. Please install MetaMask first.');
+                    return false;
+                }else{
+                    alert('MetaMask extension has been detected!!');
+                    return true;
+                }
+            }
+            
+            function web3_metamask_hash(){
+                var hashed_string   = '';
+                var chars           = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+                var total_chars     = chars.length;
+                for ( var i = 0; i < 256; i++ ) {
+                    hashed_string += chars.charAt(Math.floor(Math.random() * total_chars));
+                }
+                return hashed_string;                
+            }
+            
+            async function web3_metamask_login() {
+                // Check first if the user has the MetaMask installed
+                if ( web3_check_metamask() ) {
+                    console.log('Initate Login Process');
+
+                    // Get the Ethereum provider
+                    const provider = new ethers.providers.Web3Provider(window.ethereum);                    
+                    // Get Ethereum accounts
+                    await provider.send("eth_requestAccounts", []);
+                    console.log("Connected!!"); 
+                    // Get the User Ethereum address
+                    const address = await provider.getSigner().getAddress();
+                    console.log(address);      
+
+                    // Create hashed string 
+                    const hashed_string = web3_metamask_hash();      
+                    console.log("Hashed string: " + hashed_string);   
+                    // Request the user to sign it
+                    const signature = await provider.getSigner().signMessage(hashed_string);
+                    // Got the signature
+                    console.log("The signature: " + signature);   
+                    window.location.href="claim.html";
+                    // TODO
+                    // you can then send the signature to the webserver for further processing and verification 
+                }
+            }              
+        </script>
+    </head>
+    <body>
+        <div class="main-container">
+            <!-- <img src="./lawrence-kayku-frWOcVisp8U-unsplash.jpg" alt="background"> -->
+            <div class="nav-bar">
+                <div class="left-bar">
+                    <a id="big-text">AgriNex</a>
+                    <!-- <img src="./icons8-farmer-90 2 (1).png" alt=""> -->
+                </div>
+                <div class="right-bar">
+                    <a href="#" target="_self">Plans</a>
+                    <a href="#">About</a>
+                    <a href="#" target="_self">Contact</a>
+                    <a href="#" target="_self">My Account</a>
+                </div>
+            </div>
+            <div class="login-page">
+                <form id="transForm">
+                    <!-- <h1 style="margin-top: 20px;">Payment Portal</h1>
+                    <p id="user" style="font-weight: 600;">recipientAddress</p>
+                    <div class="input-box">
+                        <input type="text" id="recipientAddress" placeholder="  0x..." required>
+                    </div>
+                    <p id="pass" style="font-weight: 600;">Amount (ETH):</p>
+                    <div class="input-box">
+                        <input type="number" id="ethAmount" step="0.01" placeholder="  0.00" required>
+                    </div> -->
+                    <button type="button" class="btn" style="border: 1px solid black;" onclick="web3_check_metamask();">Detect Metamask</button>
+                    <button type="button" class="btn" style="border: 1px solid black;" onclick="web3_metamask_login();">Connect Wallet</button>
+                </form>
+            </div>
+        <!-- <p>Check first if MetaMask is installed: <a href="#!" onclick="web3_check_metamask();">Detect MetaMask</a></p>
+        <p>Initate the Login process: <a href="#!" onclick="web3_metamask_login();">Login with MetaMask</a></p> -->
+        </div>
+    </body>
+</html>
